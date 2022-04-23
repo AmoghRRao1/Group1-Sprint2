@@ -1,10 +1,10 @@
 import React from 'react'
 import Dashboard from '../../components/Dashboard'
-
+import './dashboard.css'
 
 const DashboardPage = () => {
   return (
-    <><Dashboard /></>
+    <div className='tablecontainer'><Dashboard /></div>
   )
   }
 
