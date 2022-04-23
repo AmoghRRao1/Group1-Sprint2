@@ -8,25 +8,25 @@ const LoginForm = () => {
   };
 
     return (
-        <div className={slide ? 'container right-panel-active': 'container'} id="container">
+        <div className={slide ? 'container1 right-panel-active': 'container1'} id="container">
             <div className="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
                     <br></br>
-                    <input type="text" placeholder="Name" />
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <button>Sign Up</button>
+                    <input className='input' type="text" placeholder="Name" />
+                    <input className='input' type="email" placeholder="Email" />
+                    <input className='input' type="password" placeholder="Password" />
+                    <button className='button' >Sign Up</button>
                 </form>
             </div>
             <div className="form-container sign-in-container">
                 <form action="#">
                     <h1>Sign in</h1>
                     <br></br>
-                    <input type="email" placeholder="Email" />
-                    <input type="password" placeholder="Password" />
-                    <a href="#">Forgot your password?</a>
-                    <button>Sign In</button>
+                    <input className='input' type="email" placeholder="Email" />
+                    <input className='input' type="password" placeholder="Password" />
+                    <a className='a' href="#">Forgot your password?</a>
+                    <button className='button'>Sign In</button>
                 </form>
             </div>
             <div className="overlay-container">
@@ -34,12 +34,12 @@ const LoginForm = () => {
                     <div className="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>
                         <p>To keep connected with us please login with your personal info</p>
-                        <button onClick={()=> setSlide(0)} className="ghost" id="signIn">Sign In</button>
+                        <button onClick={()=> setSlide(0)} className="button ghost" id="signIn">Sign In</button>
                     </div>
                     <div className="overlay-panel overlay-right">
                         <h1>Hello, Friend!</h1>
                         <p>Enter your personal details and start journey with us</p>
-                        <button  onClick={()=> setSlide(1)} className="ghost" id="signUp">Sign Up</button>
+                        <button onClick={()=> setSlide(1)} className="button ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
             </div>
