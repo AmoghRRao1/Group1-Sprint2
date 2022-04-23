@@ -12,6 +12,7 @@ const LoginForm = () => {
             <div className="form-container sign-up-container">
                 <form action="#">
                     <h1>Create Account</h1>
+                    <br></br>
                     <input type="text" placeholder="Name" />
                     <input type="email" placeholder="Email" />
                     <input type="password" placeholder="Password" />
