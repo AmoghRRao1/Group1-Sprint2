@@ -1,18 +1,18 @@
 import React from 'react'
 import './dashboard.css'
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   return (
     <div className="table">
         <div className="col-md-12">
             <div className="main-card mb-3 card">
-                <div className="card-header">Active Users
-                    <div className="btn-actions-pane-right">
+                <div className="card-header">{props.heading}
+                    {/* <div className="btn-actions-pane-right">
                         <div role="group" className="btn-group-sm btn-group">
                             <button className="active btn btn-focus">Last Week</button>
                             <button className="btn btn-focus">All Month</button>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
                 <div className="table-responsive">
                     <table className="align-middle mb-0 table table-borderless table-striped table-hover">
@@ -22,7 +22,7 @@ const Dashboard = () => {
                             <th>Name</th>
                             <th className="text-center">City</th>
                             <th className="text-center">Status</th>
-                            <th className="text-center">Actions</th>
+                            <th className="text-center">Details</th>
                         </tr>
                         </thead>
                         <tbody>
