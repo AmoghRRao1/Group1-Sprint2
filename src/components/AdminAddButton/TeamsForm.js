@@ -1,22 +1,18 @@
 import React from 'react'
+import './TeamsForm.css'
 
 const TeamsForm = ({isOpen,toggle}) => {
   return (
     <div>
-        <div class="popup">
-            <div class="close-btn" onClick={toggle}>&times;</div>
-                <div class="form">
-                <div class= "form-element">
-                    <label for="email">Email</label>
-                    <input type="text" id="email" placeholder="Enter email" />
-                    </div>
-                <div class="form-element">
-                    <label for ="password">Password</label>
-                    <input type="password" id="password" placeholder="Enter password" />
-                </div>
-                <div class="form-element">
-                    <button>Sign in</button>
-                </div>
+        <div className="login-page">
+            <div className="form1">
+                <form className="login-form">                    
+                    <h2 className='heading'>Add Team</h2>
+                    <input id='teamName' type="text" placeholder="Team Name"/>
+                    <input id='teamCount' type="number" placeholder="Team Count"/>
+                    <button>Add</button>
+                    <p className="message" onClick={toggle}>Cancel</p>
+                    </form>
             </div>
         </div>
     </div>

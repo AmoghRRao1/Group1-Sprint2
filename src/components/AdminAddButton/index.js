@@ -26,10 +26,12 @@ const AdminAddButton = () => {
                     <a href="#"><img className='icon' src={tournamenticon} /></a>
                 </div>
             </div>
-      </div>  
-      <div className={teamwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
-        <TeamsForm isOpen={teamwindow} toggle={toggleTeamWindow}/>
-        </div>    
+      </div>
+      <div className={teamwindow ? 'overlay_form showWindow': 'overlay_form hideWindow'} onClick={()=>toggleTeamWindow()} >
+      </div>
+        <div className={teamwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
+          <TeamsForm isOpen={teamwindow} toggle={toggleTeamWindow}/>
+          </div>    
     </div>
   )
 }
