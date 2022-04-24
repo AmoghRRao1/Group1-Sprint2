@@ -1,10 +1,10 @@
 import React from 'react'
 
-const TeamsForm = () => {
+const TeamsForm = ({isOpen,toggle}) => {
   return (
     <div>
         <div class="popup">
-            <div class="close-btn">&times;</div>
+            <div class="close-btn" onClick={toggle}>&times;</div>
                 <div class="form">
                 <div class= "form-element">
                     <label for="email">Email</label>

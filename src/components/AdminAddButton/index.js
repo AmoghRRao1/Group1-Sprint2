@@ -28,7 +28,7 @@ const AdminAddButton = () => {
             </div>
       </div>  
       <div className={teamwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
-        <TeamsForm />
+        <TeamsForm isOpen={teamwindow} toggle={toggleTeamWindow}/>
         </div>    
     </div>
   )
