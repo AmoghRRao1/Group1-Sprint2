@@ -4,6 +4,7 @@ import teamicon from './svgs/people-group-solid.svg'
 import matchicon from './svgs/icons8-match-64.svg'
 import tournamenticon from './svgs/icons8-trophy-30-_1_.svg'
 import TeamsForm from './TeamsForm'
+import MatchForm from './MatchForm'
 
 
 const AdminAddButton = () => {
@@ -11,6 +12,13 @@ const AdminAddButton = () => {
   const toggleTeamWindow = (e) => {
     e.preventDefault();
     setTeamWindow(!teamwindow);
+  }
+
+  const [matchwindow, setMatchWindow] = useState(false);
+  const toggleMatchWindow = (e) => {
+    e.preventDefault();
+    setMatchWindow(!matchwindow);
+    
   }
   return (
     <div className='parent1'>
@@ -20,7 +28,7 @@ const AdminAddButton = () => {
             <div className="fab"></div>
                 <div className="fac">
                     <a onClick={(e) =>{toggleTeamWindow(e);}} href='#'><img className='icon' src={teamicon} /></a>
-                    <a href="#"><img className='icon' src={matchicon} /></a>
+                    <a onClick={(e) =>{toggleMatchWindow(e);}} href="#"><img className='icon' src={matchicon} /></a>
                     <a href="#"><img className='icon' src={tournamenticon} /></a>
                 </div>
             </div>
@@ -29,7 +37,13 @@ const AdminAddButton = () => {
       </div>
         <div className={teamwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
           <TeamsForm isOpen={teamwindow} toggle={toggleTeamWindow}/>
-          </div>    
+          </div>  
+        
+      <div className={matchwindow ? 'overlay_form showWindow': 'overlay_form hideWindow'} onClick={(e)=>toggleMatchWindow(e)} >
+      </div>
+        <div className={matchwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
+          <MatchForm isOpen={matchwindow} toggle={toggleMatchWindow}/>
+          </div> 
     </div>
   )
 }

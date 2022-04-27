@@ -1,5 +1,5 @@
 import React, {useState} from 'react'
-import './TeamsForm.css'
+import './Form.css'
 
 const TeamsForm = ({isOpen,toggle}) => {
     const [teamName, setTeamName] =useState("");
@@ -9,31 +9,31 @@ const TeamsForm = ({isOpen,toggle}) => {
     function addTeamHandle(e)
     {
         e.preventDefault();
-        setHasError(false);
-        if(teamName ==="")
-        {
-            setInputError("Team Cannot Be Empty");
-            setHasError(true);
-            return false;
-        }
-        if(teamCount<15)
-        {
-            setInputError("Team Should Have Atleast 15 Players");
-            setHasError(true);
-            return false;
-        }
-        var count = teamCount.toString();
-        var res = fetch('http://127.0.0.1:8081/api/admin/createTeam', {
-                        method: 'post',
-                        headers: {'Content-Type':'application/json'},
-                        body: JSON.stringify({
-                            "teamname":teamName,
-                            "teamcount":count
-                        })
-                    });
-        console.log(res);
-        setTeamName("");
-        setTeamCount(15);
+        // setHasError(false);
+        // if(teamName ==="")
+        // {
+        //     setInputError("Team Cannot Be Empty");
+        //     setHasError(true);
+        //     return false;
+        // }
+        // if(teamCount<15)
+        // {
+        //     setInputError("Team Should Have Atleast 15 Players");
+        //     setHasError(true);
+        //     return false;
+        // }
+        // var count = teamCount.toString();
+        // var res = fetch('http://127.0.0.1:8081/api/admin/createTeam', {
+        //                 method: 'post',
+        //                 headers: {'Content-Type':'application/json'},
+        //                 body: JSON.stringify({
+        //                     "teamname":teamName,
+        //                     "teamcount":count
+        //                 })
+        //             });
+        // console.log(res);
+        // setTeamName("");
+        // setTeamCount(15);
         
     }
     return (
