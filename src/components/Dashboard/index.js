@@ -5,7 +5,6 @@ import MatchDetails from './MatchDetails';
 
 const Dashboard = (props) => {
     let[tournaments, setTournaments]=useState([]); 
-    let[matches, setMatches]=useState([]); 
     const[tournamentID, setTournamentID]=useState(0); 
 
     const [matchDetailwindow, setMatchDetailWindow] = useState(false);
@@ -17,8 +16,6 @@ const Dashboard = (props) => {
   {
     setTournamentID(parseInt(e.target.value));
     toggleMatchDetailWindow(e); 
-    setMatches(tournaments[tournamentID].matches);
-    console.log(matches);
   }
     useEffect(() => {
     fetch('http://127.0.0.1:8081/api/public/tournaments')
@@ -48,7 +45,7 @@ const Dashboard = (props) => {
                                 <td className="text-center text-muted">{data.tournamentId}</td>                            
                                 <td className="text-center">{data.matches.length}</td>
                                 <td className="text-center">
-                                    <button type="button" id="PopoverCustomT-1" onClick={(e)=>openMatchDetails(e)} className="btn btn-primary btn-sm" value={id}>Details</button>
+                                    <button type="button" id="PopoverCustomT-1" onClick={(e)=>openMatchDetails(e)} className="btn btn-primary btn-sm" value={data.tournamentId}>Details</button>
                                 </td>
                             </tr>
                             })
@@ -61,7 +58,7 @@ const Dashboard = (props) => {
         <div className={matchDetailwindow ? 'overlay_form showWindow': 'overlay_form hideWindow'} onClick={(e)=>toggleMatchDetailWindow(e)} >
         </div>
             <div className={matchDetailwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
-            <MatchDetails heading="Matches" Matches = {matches} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>
+            <MatchDetails heading="Matches" Matches = {tournamentID} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>
             </div>
     </div>
   )

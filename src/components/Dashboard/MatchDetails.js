@@ -1,11 +1,34 @@
 import React,{useState,useEffect } from 'react'
 import './dashboard.css'
 
+
 const MatchDetails = (props) => {
-    bidHandle(e)
+    const bidHandle = (e) =>
     {
+        // fetch('http://127.0.0.1:8081/api/bidder/2/bid', {
+        //     method: 'post',
+        //     headers: {'Content-Type':'application/json'},
+        //     body: JSON.stringify({
+        //         "MatchId":e.target.value,
+        //         "teamId":'2'
+        //     })
+        // }).then((e)=>{
+        //     if(e.status==200){                            
+        //         setHasMessage(true);
+        //         setMessage("Team Added")}
+        //     else{
+        //         setHasError(true);
+        //         setMessage("There was a problem try again");
+        //     }
         
+        // });
+
     }
+    let[matches, setMatches]=useState([]); 
+    useEffect(() => {
+    fetch('http://127.0.0.1:8081/api/admin/getMatches/4')
+    .then(response => response.json())
+    .then(data => setMatches(data));}, []);
 
   return (
     <div className="m0 table">
@@ -26,7 +49,7 @@ const MatchDetails = (props) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {props.Matches.map((data,id)=>{
+                        {matches.map((data,id)=>{
                             return <tr  key={id}>
                                 <td className="text-center text-muted">{id+1}</td>                            
                                 <td className="text-center">{data.team1}</td>
