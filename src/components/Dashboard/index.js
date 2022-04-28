@@ -7,10 +7,25 @@ const Dashboard = (props) => {
     let[tournaments, setTournaments]=useState([]); 
     const[tournamentID, setTournamentID]=useState(0); 
 
+
+    // useEffect(()=>
+    // {
+    //     fetch('http://127.0.0.1:8081/api/public/tournaments')
+    //     .then((response)=>{
+    //             if(response.status==200){   
+    //                 let res = response.json();            
+    //                 setTournaments( res);
+    //                 return;
+    //             }                  
+    //     })
+    // });
+    
+    // console.log(tournaments);
     const [matchDetailwindow, setMatchDetailWindow] = useState(false);
   const toggleMatchDetailWindow = () => {
     setMatchDetailWindow(!matchDetailwindow);
   }
+
 
   const[matches, setMatches]=useState([]);
   const getMatchData = async (id) =>
