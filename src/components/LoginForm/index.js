@@ -1,4 +1,4 @@
-import React , { useState }from 'react'
+import React , { useState } from 'react'
 import './login.css'
 
 const LoginForm = () => {
@@ -10,7 +10,7 @@ const LoginForm = () => {
     return (
         <div className={slide ? 'container1 right-panel-active': 'container1'} id="container">
             <div className="form-container sign-up-container">
-                <form action="#">
+                <form className='form' action="#">
                     <h1>Create Account</h1>
                     <br></br>
                     <input className='input' type="text" placeholder="Name" />
@@ -20,7 +20,7 @@ const LoginForm = () => {
                 </form>
             </div>
             <div className="form-container sign-in-container">
-                <form action="#">
+                <form className='form' action="#">
                     <h1>Sign in</h1>
                     <br></br>
                     <input className='input' type="email" placeholder="Email" />

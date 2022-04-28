@@ -12,7 +12,7 @@ function App() {
           <LoginPage />
         </Route>
         <Route exact path='/dashboard'  title="Dashboard">
-          <DashboardPage />
+          <DashboardPage isAdmin={true}/>
         </Route>
       </Switch>
     </Router>

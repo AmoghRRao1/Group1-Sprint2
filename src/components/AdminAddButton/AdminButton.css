@@ -1,5 +1,5 @@
+@import url('https: //cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.2/css/bootstrap.min.css');
 @import url('https: //cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
-
 :root {
     --background: #4285f4;
     --icon-color: #344955;
@@ -11,6 +11,12 @@
 {
     width: 32px;
     height: 32px;
+}
+
+.float {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
 }
 .wrapper {
     width: var(--width);
@@ -168,4 +174,34 @@
     100% {
         transform: scale(1, 1);
     }
+}
+
+
+.TeamForm
+{
+    position: fixed;
+    left:50%;
+    top:50%;
+    opacity: 1 !important;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+}
+.showWindow
+{
+    display:inline-block;
+}
+.hideWindow {
+    display: none;
+}
+.overlay_form
+{
+    background: #ddeefc;
+    opacity: 0.70;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    z-index: 100;
 }
