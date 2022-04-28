@@ -14,17 +14,17 @@ const Dashboard = (props) => {
     //     }                    
     // })
 
-    useEffect(()=>
-    {
-        fetch('http://127.0.0.1:8081/api/public/tournaments')
-        .then((response)=>{
-                if(response.status==200){   
-                    let res = response.json();            
-                    setTournaments( res);
-                    return;
-                }                  
-        })
-    });
+    // useEffect(()=>
+    // {
+    //     fetch('http://127.0.0.1:8081/api/public/tournaments')
+    //     .then((response)=>{
+    //             if(response.status==200){   
+    //                 let res = response.json();            
+    //                 setTournaments( res);
+    //                 return;
+    //             }                  
+    //     })
+    // });
     
     console.log(tournaments);
 
