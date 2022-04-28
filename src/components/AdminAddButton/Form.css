@@ -24,6 +24,22 @@
     margin-bottom: 30px;
 }
 
+.form1 select {
+    outline: 0;
+    background: #f2f2f2;
+    width: 100%;
+    border: 0;
+    margin: 7px;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 25px;
+    border-right: 16px solid transparent
+}
+.selectclass
+{
+    width:100%;
+}
 .form1 input {
     outline: 0;
     background: #f2f2f2;
@@ -34,7 +50,12 @@
     box-sizing: border-box;
     font-size: 14px;
     border-radius: 25px;
+    border: 1px solid transparent;
 }
+.form1 input:hover {
+    border: 1px solid hsl(0, 0%, 70%);
+}
+
 .form1 input[type=number]::-webkit-inner-spin-button,
 .form1 input[type=number]::-webkit-outer-spin-button {
     -webkit-appearance: none;
@@ -88,7 +109,14 @@
     font-size: 12px;
     text-align: center;
 }
-.hideError
+.form1 .doneMessage
+{
+    margin: 15px 0 0;
+    color: green;
+    font-size: 12px;
+    text-align: center;
+}
+.hideMessage
 {
     display: None;
 }

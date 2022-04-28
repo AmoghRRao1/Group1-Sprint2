@@ -1,128 +1,55 @@
-import React from 'react'
+import React,{useState,useEffect } from 'react'
 import './dashboard.css'
 
 const Dashboard = (props) => {
+    const[tournaments, setTournaments]=useState([]);
+    // fetch('http://127.0.0.1:8081/api/public/tournaments', {
+    //     method: 'get',
+    //     headers: {'Content-Type':'application/json'},
+    // })
+    // .then((response)=>{
+    //     if(response.status==200){   
+    //         let res = response.json();            
+    //         setTournaments(res);
+    //     }                    
+    // })
+
+    useEffect(()=>
+    {
+        fetch('http://127.0.0.1:8081/api/public/tournaments')
+        .then((response)=>{
+                if(response.status==200){   
+                    let res = response.json();            
+                    setTournaments( res);
+                    return;
+                }                  
+        })
+    });
+    
+    console.log(tournaments);
+
+
   return (
     <div className="table">
         <div className="col-md-12">
             <div className="main-card mb-3 card">
                 <div className="card-header">{props.heading}
-                    {/* <div className="btn-actions-pane-right">
-                        <div role="group" className="btn-group-sm btn-group">
-                            <button className="active btn btn-focus">Last Week</button>
-                            <button className="btn btn-focus">All Month</button>
-                        </div>
-                    </div> */}
                 </div>
                 <div className="table-responsive">
                     <table className="align-middle mb-0 table table-borderless table-striped table-hover">
                         <thead>
                         <tr>
                             <th className="text-center">#</th>
-                            <th>Name</th>
-                            <th className="text-center">City</th>
-                            <th className="text-center">Status</th>
+                            <th className="text-center">Number Of Matches</th>
                             <th className="text-center">Details</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr>
-                            <td className="text-center text-muted">#345</td>
-                            <td>
-                                <div className="widget-content p-0">
-                                    <div className="widget-content-wrapper">
-                                        <div className="widget-content-left mr-3">
-                                            <div className="widget-content-left">
-                                                <img width="40" className="rounded-circle" src="assets/images/avatars/4.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div className="widget-content-left flex2">
-                                            <div className="widget-heading">John Doe</div>
-                                            <div className="widget-subheading opacity-7">Web Developer</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
+                            <td className="text-center text-muted">#345</td>                            
                             <td className="text-center">Madrid</td>
                             <td className="text-center">
-                                <div className="badge badge-warning">Pending</div>
-                            </td>
-                            <td className="text-center">
                                 <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-center text-muted">#347</td>
-                            <td>
-                                <div className="widget-content p-0">
-                                    <div className="widget-content-wrapper">
-                                        <div className="widget-content-left mr-3">
-                                            <div className="widget-content-left">
-                                                 <img width="40" className="rounded-circle" src="assets/images/avatars/3.jpg" alt="" />
-                                            </div>
-                                        </div>
-                                        <div className="widget-content-left flex2">
-                                            <div className="widget-heading">Ruben Tillman</div>
-                                            <div className="widget-subheading opacity-7">Etiam sit amet orci eget</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-center">Berlin</td>
-                            <td className="text-center">
-                                <div className="badge badge-success">Completed</div>
-                            </td>
-                            <td className="text-center">
-                                <button type="button" id="PopoverCustomT-2" className="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-center text-muted">#321</td>
-                            <td>
-                                <div className="widget-content p-0">
-                                    <div className="widget-content-wrapper">
-                                        <div className="widget-content-left mr-3">
-                                            <div className="widget-content-left">
-                                                <img width="40" className="rounded-circle" src="assets/images/avatars/2.jpg" alt=""></img>
-                                            </div>
-                                        </div>
-                                        <div className="widget-content-left flex2">
-                                            <div className="widget-heading">Elliot Huber</div>
-                                            <div className="widget-subheading opacity-7">Lorem ipsum dolor sic</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-center">London</td>
-                            <td className="text-center">
-                                <div className="badge badge-danger">In Progress</div>
-                            </td>
-                            <td className="text-center">
-                                <button type="button" id="PopoverCustomT-3" className="btn btn-primary btn-sm">Details</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td className="text-center text-muted">#55</td>
-                            <td>
-                                <div className="widget-content p-0">
-                                    <div className="widget-content-wrapper">
-                                        <div className="widget-content-left mr-3">
-                                            <div className="widget-content-left">
-                                                <img width="40" className="rounded-circle" src="assets/images/avatars/1.jpg" alt=""></img></div>
-                                        </div>
-                                        <div className="widget-content-left flex2">
-                                            <div className="widget-heading">Vinnie Wagstaff</div>
-                                            <div className="widget-subheading opacity-7">UI Designer</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td className="text-center">Amsterdam</td>
-                            <td className="text-center">
-                                <div className="badge badge-info">On Hold</div>
-                            </td>
-                            <td className="text-center">
-                                <button type="button" id="PopoverCustomT-4" className="btn btn-primary btn-sm">Details</button>
                             </td>
                         </tr>
                         </tbody>

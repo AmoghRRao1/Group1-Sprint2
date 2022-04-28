@@ -1,21 +1,21 @@
-import React from 'react'
+import React, {useState} from 'react'
 import AdminAddButton from '../../components/AdminAddButton';
 import Dashboard from '../../components/Dashboard'
 import './dashboard.css'
 
-const DashboardPage = () => {
+const DashboardPage = (props) => {
   document.title = 'Dashboard | IPL Fantasy League';
-  
+    
   return (
     <>
       <div className='tablecontainer'>
-        <Dashboard heading="Tournaments"/>
-        
+        <Dashboard heading="Tournaments"/>        
         </div>
-
-        <div className='float'>
-          <AdminAddButton />
-        </div>
+        { props.isAdmin ?        
+          <div className='float'>
+            <AdminAddButton />
+          </div> : null
+          }
     </>
   )
   }

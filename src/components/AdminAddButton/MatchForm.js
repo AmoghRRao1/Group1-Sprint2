@@ -45,24 +45,28 @@ const MatchForm = ({isOpen,toggle}) => {
                     <form className="login-form">                    
                         <h2 className='heading'>Schedule Match</h2>
                         <p className={hasError ? "errorMessage" : "hideError"}>{inputError}</p>
-                        <label for="cars">Choose Team one:</label>
-                        <select id="TeamOne" name="TeamOne">
+                        <select title="Select Team One" id="TeamOne" name="TeamOne">
                             <option value="RCB">RCB</option>
                             <option value="CSK">CSK</option>
                             <option value="MI">MI</option>
                             <option value="DC">DC</option>
                         </select>
-                        <label for="cars">Choose Team two:</label>
-                        <select id="TeamTwo" name="TeamTwo">
+                        <select title="Select Team Two" id="TeamTwo" name="TeamTwo">
                             <option value="RCB">RCB</option>
                             <option value="CSK">CSK</option>
                             <option value="MI">MI</option>
                             <option value="DC">DC</option>
                         </select>
-                        <label for="cars">Select Match Date:</label>
-                        <input id='matchDate' type="date" value={matchDate} onChange={e => setMatchDate(e.target.value)}/>
-                        <label for="cars">Select Match time:</label>
-                        <input id='matchTime' type="time" value={matchTime} onChange={e => setMatchTime(e.target.value)}/>
+
+                        <select title="Select Tournament" id="Tournament" name="Tournament">
+                            <option value="RCB">1</option>
+                            <option value="CSK">2</option>
+                            <option value="MI">3</option>
+                            <option value="DC">4</option>
+                        </select>
+
+                        <input title="Select Match Date" id='matchDate' type="date" value={matchDate} onChange={e => setMatchDate(e.target.value)}/>
+                        <input title="Select Match Time" id='matchTime' type="time" value={matchTime} onChange={e => setMatchTime(e.target.value)}/>
                         <button type="Submit" onClick={(e)=>addMatchHandle(e)}>Add</button>
                         <p className="message" onClick={toggle}>Cancel</p>
                         </form>
