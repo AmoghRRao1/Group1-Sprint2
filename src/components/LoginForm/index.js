@@ -4,6 +4,7 @@ import './login.css'
 
 const LoginForm = () => {
 
+    const [name,setName] = useState("");
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
     const [role,setRole] = useState("");
