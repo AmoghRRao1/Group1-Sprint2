@@ -9,9 +9,9 @@ const Dashboard = (props) => {
 
     const [matchDetailwindow, setMatchDetailWindow] = useState(false);
   const toggleMatchDetailWindow = (e) => {
-    e.preventDefault();
     setMatchDetailWindow(!matchDetailwindow);
   }
+
   const openMatchDetails = (e)=>
   {
     setTournamentID(parseInt(e.target.value));
@@ -23,7 +23,7 @@ const Dashboard = (props) => {
     .then(data => setTournaments(data));}, []);
     //console.log(tournaments); 
 
-
+    
   return (
     <div className="table">
         <div className="col-md-12">

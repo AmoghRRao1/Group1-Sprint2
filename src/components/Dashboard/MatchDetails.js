@@ -24,15 +24,17 @@ const MatchDetails = (props) => {
         // });
 
     }
-    let[matches, setMatches]=useState([]); 
+    
+    let[matches, setMatches]=useState([]);
     useEffect(() => {
-    fetch('http://127.0.0.1:8081/api/admin/getMatches/4')
+    fetch('http://127.0.0.1:8081/api/admin/getMatches/'+props.Matches)
     .then(response => response.json())
-    .then(data => setMatches(data));}, []);
+    .then(data => setMatches(data))
+    .then(console.log(matches));}, []);
 
   return (
     <div className="m0 table">
-        <div className="col-md-12">
+        {/* <div className="col-md-12">
             <div className="m0 main-card card">
                 <div className="card-header">{props.heading}
                 </div>
@@ -49,7 +51,7 @@ const MatchDetails = (props) => {
                         </tr>
                         </thead>
                         <tbody>
-                        {matches.map((data,id)=>{
+                        {props.Matches.map((data,id)=>{
                             return <tr  key={id}>
                                 <td className="text-center text-muted">{id+1}</td>                            
                                 <td className="text-center">{data.team1}</td>
@@ -67,7 +69,7 @@ const MatchDetails = (props) => {
                     </table>
                 </div>
             </div>
-        </div>
+        </div> */}
     </div>
   )
 }
