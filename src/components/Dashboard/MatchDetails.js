@@ -5,23 +5,24 @@ import './dashboard.css'
 const MatchDetails = (props) => {
     const bidHandle = (e) =>
     {
-        // fetch('http://127.0.0.1:8081/api/bidder/2/bid', {
-        //     method: 'post',
-        //     headers: {'Content-Type':'application/json'},
-        //     body: JSON.stringify({
-        //         "MatchId":e.target.value,
-        //         "teamId":'2'
-        //     })
-        // }).then((e)=>{
-        //     if(e.status==200){                            
-        //         setHasMessage(true);
-        //         setMessage("Team Added")}
-        //     else{
-        //         setHasError(true);
-        //         setMessage("There was a problem try again");
-        //     }
+        fetch('http://127.0.0.1:8081/api/bidder/'+ localStorage.getItem("BidderID")+'/bid', {
+            method: 'post',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({
+                "matchId":e.target.value,
+                "teamId":"2"
+            })
+        }).then((e)=>{
+            if(e.status==200){                            
+                // setHasMessage(true);
+                // setMessage("Team Added")
+            }
+            else{
+                // setHasError(true);
+                // setMessage("There was a problem try again");
+            }
         
-        // });
+        });
 
     }
     
@@ -54,7 +55,7 @@ const MatchDetails = (props) => {
                                 <td className="text-center">{data.matchTime}</td>
                                 <td className="text-center">
                                     { props.isAdmin ?  <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Reschedule</button>:
-                                    <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Bid</button>}
+                                    <button type="button" onClick={(e)=>bidHandle(e)} id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Bid</button>}
                                 </td>
                             </tr>
                             })
