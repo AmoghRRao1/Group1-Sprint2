@@ -6,6 +6,7 @@ const LoginForm = () => {
 
     const [name,setName] = useState("");
     const [username,setUsername] = useState("");
+    const [name,setName] = useState("");
     const [password,setPassword] = useState("");
     const [role,setRole] = useState("");
     const [Token,setToken] = useState("");
@@ -32,6 +33,7 @@ const clickLogin = (e) => {
       if(result.Status === "Successful"){
         setToken(result.Token);             
         setRole("Admin");
+        localStorage.setItem('Role', "Admin");
         // alert("You are logged in as :"+role+"\n Token: "+Token);
         //go to Dash Board
         history.push("/dashboard");
@@ -54,11 +56,15 @@ const clickLogin = (e) => {
     .then((result) => {
       if(result.Status === "Successful"){
         setToken(result.Token);
+        localStorage.setItem('Role', "Bidder");
+        localStorage.setItem('BidderID', result.BidderID);
+        console.log( result.BidderID);
+        
+
 
         //alert("You are logged in.:"+Token);
         //go to Dash Board
-        history.push("/dashboard");
-        
+        history.push("/dashboard");     
 
        } else {
            alert(result.Error);
@@ -86,8 +92,9 @@ const clickSignUp = (e) => {
     .then((result) => {
       if(result.Status === "Successful"){
         //setToken(result.Token);
-
         
+        localStorage.setItem('Role', "Bidder");
+        localStorage.setItem('BidderID', result.BidderID);        
         history.push("/dashboard");
         
 
