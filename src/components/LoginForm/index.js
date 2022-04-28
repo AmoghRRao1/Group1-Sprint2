@@ -70,16 +70,45 @@ const clickLogin = (e) => {
     
 }
 
+const clickSignUp = (e) => {
+    e.preventDefault();
+    fetch ("http://127.0.0.1:8081/api/bidder/register", {
+       method: "POST",
+       headers: {'Content-Type':'application/json','Accept': 'application/json'},
+       body: JSON.stringify({
+         email: username,
+         name: name,
+         password: password
+      }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if(result.Status === "Successful"){
+        //setToken(result.Token);
+
+        
+        history.push("/dashboard");
+        
+
+       } else {
+           alert(result.Error);
+       }
+    });
+}
+
     return (
         <div className={slide ? 'container1 right-panel-active': 'container1'} id="container">
             <div className="form-container sign-up-container">
                 <form className='form' action="#">
                     <h1>Create Account</h1>
                     <br></br>
-                    <input className='input' type="text" placeholder="Name" />
-                    <input className='input' type="email" placeholder="Email" />
-                    <input className='input' type="password" placeholder="Password" />
-                    <button className='button' >Sign Up</button>
+                    <input className='input' type="text" placeholder="Name" 
+                    value={name} onChange={(event)=>setName(event.target.value)}/>
+                    <input className='input' type="email" placeholder="Email" 
+                    value={username} onChange={(event)=>setUsername(event.target.value)}/>
+                    <input className='input' type="password" placeholder="Password" 
+                    value={password} onChange={(event)=>setPassword(event.target.value)}/>
+                    <button className='button'  onClick={clickSignUp}>Sign Up</button>
                 </form>
             </div>
             <div className="form-container sign-in-container">
