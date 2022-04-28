@@ -8,20 +8,27 @@ const Dashboard = (props) => {
     const[tournamentID, setTournamentID]=useState(0); 
 
     const [matchDetailwindow, setMatchDetailWindow] = useState(false);
-  const toggleMatchDetailWindow = (e) => {
+  const toggleMatchDetailWindow = () => {
     setMatchDetailWindow(!matchDetailwindow);
   }
 
-  const openMatchDetails = (e)=>
+  const[matches, setMatches]=useState([]);
+  const getMatchData = async (id) =>
   {
-    setTournamentID(parseInt(e.target.value));
-    toggleMatchDetailWindow(e); 
+    const res = await fetch('http://127.0.0.1:8081/api/admin/getMatches/'+id);
+    return await res.json();
+    
+  }
+  const openMatchDetails = async (value)=>
+  {
+    let res = await getMatchData(parseInt(value));
+    setMatches(res);
+    toggleMatchDetailWindow(); 
   }
     useEffect(() => {
     fetch('http://127.0.0.1:8081/api/public/tournaments')
     .then(response => response.json())
-    .then(data => setTournaments(data));}, []);
-    //console.log(tournaments); 
+    .then(data => setTournaments(data));} ,[]);
 
     
   return (
@@ -45,7 +52,7 @@ const Dashboard = (props) => {
                                 <td className="text-center text-muted">{data.tournamentId}</td>                            
                                 <td className="text-center">{data.matches.length}</td>
                                 <td className="text-center">
-                                    <button type="button" id="PopoverCustomT-1" onClick={(e)=>openMatchDetails(e)} className="btn btn-primary btn-sm" value={data.tournamentId}>Details</button>
+                                    <button type="button" id="PopoverCustomT-1" onClick={(e)=> openMatchDetails(e.target.value)} className="btn btn-primary btn-sm" value={data.tournamentId}>Details</button>
                                 </td>
                             </tr>
                             })
@@ -58,7 +65,7 @@ const Dashboard = (props) => {
         <div className={matchDetailwindow ? 'overlay_form showWindow': 'overlay_form hideWindow'} onClick={(e)=>toggleMatchDetailWindow(e)} >
         </div>
             <div className={matchDetailwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
-            <MatchDetails heading="Matches" Matches = {tournamentID} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>
+            {matchDetailwindow ? <MatchDetails heading="Matches" Matches = {matches} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>:null}
             </div>
     </div>
   )
