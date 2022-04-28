@@ -6,7 +6,7 @@ const LoginForm = () => {
 
     const [username,setUsername] = useState("");
     const [password,setPassword] = useState("");
-
+    const [role,setRole] = useState("");
     const [Token,setToken] = useState("");
 
     const [slide, setSlide] = useState(false);
@@ -14,9 +14,34 @@ const LoginForm = () => {
     setSlide(!slide);
   };
 let history= useHistory();
-  const clickLogin = (e) => {
+  
+const clickLogin = (e) => {
     e.preventDefault();
-    fetch ("http://127.0.0.1:8080/api/bidder/login", {
+    //Admin
+    fetch ("http://127.0.0.1:8081/api/admin/login", {
+       method: "POST",
+       headers: {'Content-Type':'application/json','Accept': 'application/json'},
+       body: JSON.stringify({
+        username: username,
+         password: password
+      }),
+  })
+    .then((response) => response.json())
+    .then((result) => {
+      if(result.Status === "Successful"){
+        setToken(result.Token);             
+        setRole("Admin");
+        alert("You are logged in as :"+role+"\n Token: "+Token);
+        //go to Dash Board
+        history.push("/dashboard");
+        
+
+       }
+        
+       else {
+        //Bidder
+        console.log("Test B");
+        fetch ("http://127.0.0.1:8081/api/bidder/login", {
        method: "POST",
        headers: {'Content-Type':'application/json','Accept': 'application/json'},
        body: JSON.stringify({
@@ -35,9 +60,14 @@ let history= useHistory();
         
 
        } else {
-           alert("Please check your login information.");
+           alert(result.Error);
        }
     });
+
+       }
+    });
+    
+    
 }
 
     return (
