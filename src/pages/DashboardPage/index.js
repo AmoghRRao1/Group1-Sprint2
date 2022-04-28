@@ -5,13 +5,14 @@ import './dashboard.css'
 
 const DashboardPage = (props) => {
   document.title = 'Dashboard | IPL Fantasy League';
+  let admin = (localStorage.getItem("Admin").toLowerCase() === 'true');
     
   return (
     <>
       <div className='tablecontainer'>
-        <Dashboard heading="Tournaments" isAdmin ={props.isAdmin}  />        
+        <Dashboard heading="Tournaments" isAdmin ={admin}  />        
         </div>
-        { props.isAdmin ?        
+        { admin?        
           <div className='float'>
             <AdminAddButton />
           </div> : null

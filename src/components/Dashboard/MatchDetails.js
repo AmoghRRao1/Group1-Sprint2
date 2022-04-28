@@ -3,6 +3,9 @@ import './dashboard.css'
 
 
 const MatchDetails = (props) => {
+    
+    let admin = (localStorage.getItem("Admin").toLowerCase() === 'true');
+    const[team,setTeam] = useState("");
     const bidHandle = (e) =>
     {
         fetch('http://127.0.0.1:8081/api/bidder/'+ localStorage.getItem("BidderID")+'/bid', {
@@ -42,7 +45,9 @@ const MatchDetails = (props) => {
                             <th className="text-center">Team 2</th>
                             <th className="text-center">Match Date</th>
                             <th className="text-center">Match Time</th>
-                            <th className="text-center">Action</th>
+                            { admin ?  null:<th className="text-center">Bid Team</th> }
+                            { admin ?  null: 
+                            <th className="text-center">Action</th>}
                         </tr>
                         </thead>
                         <tbody>
@@ -53,10 +58,16 @@ const MatchDetails = (props) => {
                                 <td className="text-center">{data.team2}</td>
                                 <td className="text-center">{data.matchDate}</td>
                                 <td className="text-center">{data.matchTime}</td>
-                                <td className="text-center">
-                                    { props.isAdmin ?  <button type="button" id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Reschedule</button>:
-                                    <button type="button" onClick={(e)=>bidHandle(e)} id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Bid</button>}
-                                </td>
+                                
+                                { admin ?  null: <td className="text-center">
+                                    <select>
+                                        <option value={data.team1}>{data.team1}</option>                                        
+                                        <option value={data.team2}>{data.team2}</option>
+                                    </select>
+                                </td>}                                
+                                    { admin ?  null:
+                                    <td className="text-center"><button type="button" onClick={(e)=>bidHandle(e)} id="PopoverCustomT-1" className="btn btn-primary btn-sm" value={data.tournamentId}>Bid</button>
+                                </td>}
                             </tr>
                             })
                         }
