@@ -9,7 +9,7 @@ const DashboardPage = (props) => {
   return (
     <>
       <div className='tablecontainer'>
-        <Dashboard heading="Tournaments"/>        
+        <Dashboard heading="Tournaments" isAdmin ={props.isAdmin}  />        
         </div>
         { props.isAdmin ?        
           <div className='float'>
