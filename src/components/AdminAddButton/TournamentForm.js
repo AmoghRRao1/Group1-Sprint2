@@ -72,24 +72,7 @@ const TournamentForm = ({isOpen,toggle}) => {
         // setTeamCount(15);
         
     }
-    return (
-        <div>
-            <div className="login-page">
-                <div className="form1">
-                    <form className="login-form">                    
-                        <h2 className='heading'>Add Tournament</h2>
-                        <p className={hasError ? "errorMessage" : "hideError"}>{inputError}</p>
-                        <input title="Select Match Time" id='matchTime' type="text" value={tournamentID} onChange={e => setTournamentID(e.target.value)}/>
-                        <div className='selectclass'>
-                            <Select placeholder="Select Teams In Tournament" value={selected} onChange={(v) => v.length <= 8 ? setSelected(v): null} options={options} styles={customStyles} menuPlacement="auto" isMulti />
-                        </div>
-                        <button type="Submit" onClick={(e)=>addTournamentHandle(e)}>Add</button>
-                        <p className="message" onClick={toggle}>Cancel</p>
-                    </form>
-                </div>
-            </div>
-        </div>
-    )
+   
 }
 
 export default TournamentForm
