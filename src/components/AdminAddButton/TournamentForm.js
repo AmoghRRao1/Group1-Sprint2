@@ -1,14 +1,20 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import Select from 'react-select'
 import './Form.css'
 
 const TournamentForm = ({isOpen,toggle}) => {
     const [tournamentID, setTournamentID] =useState("");
-    const [teams, setTeams] =useState("");
+    
     const [inputError, setInputError] =useState("");
     const [hasError, setHasError] =useState(false);
-
     const [selected, setSelected] = useState([]);
+    const [teams, setTeams] = useState([]);
+
+    
+    useEffect(() => {
+        fetch('http://127.0.0.1:8081/api/public/getTeams')
+        .then(response => response.json())
+        .then(data => setTeams(data));} ,[]);
 
     const customStyles = {
         indicatorSeparator: (styles) => ({
@@ -27,18 +33,6 @@ const TournamentForm = ({isOpen,toggle}) => {
         
 
         }
-    const options = [
-        { value: '1', label: '1' },
-        { value: '2', label: '2' },
-        { value: '3', label: '3' },
-        { value: '4', label: '4' },
-        { value: '5', label: '5' },
-        { value: '6', label: '6' },
-        { value: '7', label: '7' },
-        { value: '8', label: '8' },
-        { value: '9', label: '9' },
-      ]
-
     function addTournamentHandle(e)
     {
         e.preventDefault();
@@ -81,7 +75,9 @@ const TournamentForm = ({isOpen,toggle}) => {
                         <p className={hasError ? "errorMessage" : "hideError"}>{inputError}</p>
                         <input title="Select Match Time" id='matchTime' type="text" value={tournamentID} onChange={e => setTournamentID(e.target.value)}/>
                         <div className='selectclass'>
-                            <Select placeholder="Select Teams In Tournament" value={selected} onChange={(v) => v.length <= 8 ? setSelected(v): null} options={options} styles={customStyles} menuPlacement="auto" isMulti />
+                            <Select placeholder="Select Teams In Tournament" value={selected} onChange={(v) => v.length <= 8 ? setSelected(v): null} 
+                            options={teams} styles={customStyles} menuPlacement="auto"
+                            getOptionLabel={(option) => option.teamName}  getOptionValue={(option) => option.teamId}isMulti />
                         </div>
                         <button type="Submit" onClick={(e)=>addTournamentHandle(e)}>Add</button>
                         <p className="message" onClick={toggle}>Cancel</p>
