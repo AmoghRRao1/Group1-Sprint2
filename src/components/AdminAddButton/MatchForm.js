@@ -1,3 +1,4 @@
+
 import React, {useState} from 'react'
 import './Form.css'
 
@@ -6,6 +7,8 @@ const MatchForm = ({isOpen,toggle}) => {
     const [teamTwo, setTeamTwo] =useState("");
     const [matchDate, setMatchDate] = useState("");
     const [matchTime, setMatchTime] = useState("");
+    const [message, setMessage] =useState("");
+    const [hasMessage, setHasMessage] =useState(false);
     const [inputError, setInputError] =useState("");
     const [hasError, setHasError] =useState(false);
     function addMatchHandle(e)
@@ -18,25 +21,56 @@ const MatchForm = ({isOpen,toggle}) => {
         //     setHasError(true);
         //     return false;
         // }
+       
+        
+        //  setHasError(false);
+        //  if(teamOne===""){
+        //      setInputError("Select one team");
+        //      setHasError(true);
+        //      return false;
+            
+        // };
+        // if(teamTwo ==="null"){
+        //     setInputError("Select One team");
+        //     setHasError(true);
+        //     return false;
+        // }
+
+
         // if(teamCount<15)
         // {
         //     setInputError("Team Should Have Atleast 15 Players");
         //     setHasError(true);
         //     return false;
         // }
+
         // var count = teamCount.toString();
-        // var res = fetch('http://127.0.0.1:8081/api/admin/createTeam', {
-        //                 method: 'post',
-        //                 headers: {'Content-Type':'application/json'},
-        //                 body: JSON.stringify({
-        //                     "teamname":teamName,
-        //                     "teamcount":count
-        //                 })
-        //             });
-        // console.log(res);
-        // setTeamName("");
-        // setTeamCount(15);
-        
+        var res = fetch('http://127.0.0.1:8081/api/admin/tournament/4/scheduleMatches', {
+                        method: 'post',
+                        headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({
+                            "teamOne":teamOne,
+                            "teamTwo":teamTwo,
+                            "matchTime":matchTime,
+                            "matchDate":matchDate
+                        })
+                    }).then((e)=>{
+                        if(e.status==200){                            
+                            setHasMessage(true);
+                            setMessage("Match schduled")}
+                        else{
+                            setHasError(true);
+                            setMessage("There was a problem try again");
+                        }
+                    
+                    });
+        console.log(res);
+        setTeamOne("");
+        setTeamTwo("");
+        setMatchTime("");
+        setMatchDate("");
+
+            
     }
     return (
         <div>
@@ -46,12 +80,14 @@ const MatchForm = ({isOpen,toggle}) => {
                         <h2 className='heading'>Schedule Match</h2>
                         <p className={hasError ? "errorMessage" : "hideError"}>{inputError}</p>
                         <select title="Select Team One" id="TeamOne" name="TeamOne">
+                            <option value="select Team">Select Team</option>
                             <option value="RCB">RCB</option>
                             <option value="CSK">CSK</option>
                             <option value="MI">MI</option>
                             <option value="DC">DC</option>
                         </select>
                         <select title="Select Team Two" id="TeamTwo" name="TeamTwo">
+                        <option value="select Team">Select Team</option>
                             <option value="RCB">RCB</option>
                             <option value="CSK">CSK</option>
                             <option value="MI">MI</option>

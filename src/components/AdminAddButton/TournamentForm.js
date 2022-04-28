@@ -38,34 +38,27 @@ const TournamentForm = ({isOpen,toggle}) => {
         e.preventDefault();
         const value = []
         selected.forEach(ele => value.push(ele.value));
-        console.log(value)
-        // setHasError(false);
-        // if(teamName ==="")
-        // {
-        //     setInputError("Team Cannot Be Empty");
-        //     setHasError(true);
-        //     return false;
-        // }
-        // if(teamCount<15)
-        // {
-        //     setInputError("Team Should Have Atleast 15 Players");
-        //     setHasError(true);
-        //     return false;
-        // }
-        // var count = teamCount.toString();
-        // var res = fetch('http://127.0.0.1:8081/api/admin/createTeam', {
-        //                 method: 'post',
-        //                 headers: {'Content-Type':'application/json'},
-        //                 body: JSON.stringify({
-        //                     "teamname":teamName,
-        //                     "teamcount":count
-        //                 })
-        //             });
-        // console.log(res);
-        // setTeamName("");
-        // setTeamCount(15);
+        
+        let teams = "";
+        for (let x of value) {
+            teams += x + " ";
+        }
+    
+        console.log(teams);
+        var res = fetch('http://127.0.0.1:8081/api/admin/createTournament', {
+                        method: 'post',
+                        headers: {'Content-Type':'application/json'},
+                        body: JSON.stringify({
+                            "tournamentId":parseInt(tournamentID),
+                            "teamIds":teams
+                        })
+                    });
+        console.log(res);
+        setTournamentID("");
+        setTeams("");
         
     }
+
     return (
         <div>
             <div className="login-page">
@@ -86,6 +79,8 @@ const TournamentForm = ({isOpen,toggle}) => {
             </div>
         </div>
     )
+
 }
+
 
 export default TournamentForm
