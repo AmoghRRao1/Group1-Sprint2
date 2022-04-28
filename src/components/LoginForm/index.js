@@ -31,7 +31,7 @@ const clickLogin = (e) => {
       if(result.Status === "Successful"){
         setToken(result.Token);             
         setRole("Admin");
-        alert("You are logged in as :"+role+"\n Token: "+Token);
+        // alert("You are logged in as :"+role+"\n Token: "+Token);
         //go to Dash Board
         history.push("/dashboard");
         
