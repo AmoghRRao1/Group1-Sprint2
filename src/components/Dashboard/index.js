@@ -7,26 +7,21 @@ const Dashboard = (props) => {
     let[tournaments, setTournaments]=useState([]); 
     const[tournamentID, setTournamentID]=useState(0); 
 
-    // useEffect(()=>
-    // {
-    //     fetch('http://127.0.0.1:8081/api/public/tournaments')
-    //     .then((response)=>{
-    //             if(response.status==200){   
-    //                 let res = response.json();            
-    //                 setTournaments( res);
-    //                 return;
-    //             }                  
-    //     })
-    // });
-    
-    // console.log(tournaments);
-    const [matchDetailwindow, setMatchDetailWindow] = useState(false);
+  const [matchDetailwindow, setMatchDetailWindow] = useState(false);
   const toggleMatchDetailWindow = () => {
     setMatchDetailWindow(!matchDetailwindow);
   }
 
 
-  const[matches, setMatches]=useState([]);
+  const getAllTeams = async () =>
+  {
+      const res = await fetch('http://127.0.0.1:8081/api/public/getTeams');
+      return await res.json();
+      
+  }
+  const[matches, setMatches]=useState([]);  
+  let [teamNames,setTeamNames]=useState([]);
+
   const getMatchData = async (id) =>
   {
     const res = await fetch('http://127.0.0.1:8081/api/admin/getMatches/'+id);
@@ -37,6 +32,8 @@ const Dashboard = (props) => {
   {
     let res = await getMatchData(parseInt(value));
     setMatches(res);
+    let allTeams = await getAllTeams();
+    setTeamNames(allTeams);
     toggleMatchDetailWindow(); 
   }
     useEffect(() => {
@@ -79,7 +76,7 @@ const Dashboard = (props) => {
         <div className={matchDetailwindow ? 'overlay_form showWindow': 'overlay_form hideWindow'} onClick={(e)=>toggleMatchDetailWindow(e)} >
         </div>
             <div className={matchDetailwindow ? 'TeamForm showWindow': 'TeamForm hideWindow'}>
-            {matchDetailwindow ? <MatchDetails heading="Matches" Matches = {matches} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>:null}
+            {matchDetailwindow ? <MatchDetails teamnames = { teamNames }  heading="Matches" Matches = {matches} isOpen={matchDetailwindow} toggle={toggleMatchDetailWindow}/>:null}
             </div>
     </div>
   )

@@ -32,10 +32,11 @@ const clickLogin = (e) => {
       if(result.Status === "Successful"){
         setToken(result.Token);             
         setRole("Admin");
-        localStorage.setItem('Role', "Admin");
+        localStorage.setItem('Admin', true);
         // alert("You are logged in as :"+role+"\n Token: "+Token);
         //go to Dash Board
         history.push("/dashboard");
+        window.location.reload();
         
 
        }
@@ -55,7 +56,7 @@ const clickLogin = (e) => {
     .then((result) => {
       if(result.Status === "Successful"){
         setToken(result.Token);
-        localStorage.setItem('Role', "Bidder");
+        localStorage.setItem('Admin', false);
         localStorage.setItem('BidderID', result.BidderID);
         console.log( result.BidderID);
         
@@ -63,7 +64,8 @@ const clickLogin = (e) => {
 
         //alert("You are logged in.:"+Token);
         //go to Dash Board
-        history.push("/dashboard");     
+        history.push("/dashboard");  
+        window.location.reload();   
 
        } else {
            alert(result.Error);
@@ -92,9 +94,10 @@ const clickSignUp = (e) => {
       if(result.Status === "Successful"){
         //setToken(result.Token);
         
-        localStorage.setItem('Role', "Bidder");
+        localStorage.setItem('Admin', false);
         localStorage.setItem('BidderID', result.BidderID);        
         history.push("/dashboard");
+        window.location.reload();
         
 
        } else {
