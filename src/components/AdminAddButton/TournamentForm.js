@@ -37,14 +37,14 @@ const TournamentForm = ({isOpen,toggle}) => {
     {
         e.preventDefault();
         const value = []
-        selected.forEach(ele => value.push(ele.value));
+        selected.forEach(ele => value.push(ele.teamId));
         
         let teams = "";
         for (let x of value) {
             teams += x + " ";
         }
     
-        console.log(teams);
+        console.log(value);
         var res = fetch('http://127.0.0.1:8081/api/admin/createTournament', {
                         method: 'post',
                         headers: {'Content-Type':'application/json'},
@@ -56,6 +56,7 @@ const TournamentForm = ({isOpen,toggle}) => {
         console.log(res);
         setTournamentID("");
         setTeams("");
+        window.location.reload();
         
     }
 
