@@ -6,7 +6,6 @@ const LoginForm = () => {
 
     const [name,setName] = useState("");
     const [username,setUsername] = useState("");
-    const [name,setName] = useState("");
     const [password,setPassword] = useState("");
     const [role,setRole] = useState("");
     const [Token,setToken] = useState("");
