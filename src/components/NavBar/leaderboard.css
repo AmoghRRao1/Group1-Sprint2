@@ -1,0 +1,35 @@
+
+.m0
+{
+    margin: 0!important;
+}
+.TeamForm
+{
+    position: fixed;
+    left:50%;
+    top:50%;
+    opacity: 1 !important;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    z-index: 1001;
+    padding:30px;
+    border-radius: 25px;;
+}
+.showWindow
+{
+    display:inline-block;
+}
+.hideWindow {
+    display: none;
+}
+.overlay_form
+{
+    background: #ddeefc;
+    opacity: 0.70;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top:0px;
+    left: 0px;
+    z-index: 100;
+}
