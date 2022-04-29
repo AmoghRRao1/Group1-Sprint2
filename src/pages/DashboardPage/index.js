@@ -1,6 +1,7 @@
 import React, {useState} from 'react'
 import AdminAddButton from '../../components/AdminAddButton';
 import Dashboard from '../../components/Dashboard'
+import NavBar from '../../components/NavBar';
 import './dashboard.css'
 
 const DashboardPage = (props) => {
@@ -9,6 +10,7 @@ const DashboardPage = (props) => {
     
   return (
     <>
+        <NavBar />
       <div className='tablecontainer'>
         <Dashboard heading="Tournaments" isAdmin ={admin}  />        
         </div>

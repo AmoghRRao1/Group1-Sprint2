@@ -39,6 +39,7 @@
 .selectclass
 {
     width:100%;
+    margin:6px;
 }
 .form1 input {
     outline: 0;
