@@ -29,6 +29,7 @@ const MatchDetails = (props) => {
                 "matchId":e.target.value,
                 "teamId":team
             })})
+        alert("Bid Successful")
         window.location.reload();
 
     }
