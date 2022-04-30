@@ -129,7 +129,6 @@ const clickSignUp = (e) => {
                      value={username} onChange={(event)=>setUsername(event.target.value)} />
                     <input className='input' type="password" placeholder="Password"
                     value={password} onChange={(event)=>setPassword(event.target.value)} />
-                    <a className='a' href="#">Forgot your password?</a>
                     <button className='button' onClick={clickLogin} >Sign In</button>
                 </form>
             </div>
@@ -137,12 +136,12 @@ const clickSignUp = (e) => {
                 <div className="overlay">
                     <div className="overlay-panel overlay-left">
                         <h1>Welcome Back!</h1>
-                        <p>To keep connected with us please login with your personal info</p>
+                        <p>Please login with your personal info</p>
                         <button onClick={()=> setSlide(0)} className="button ghost" id="signIn">Sign In</button>
                     </div>
                     <div className="overlay-panel overlay-right">
-                        <h1>Hello, Friend!</h1>
-                        <p>Enter your personal details and start journey with us</p>
+                        <h1>New User!</h1>
+                        <p>Register with us</p>
                         <button onClick={()=> setSlide(1)} className="button ghost" id="signUp">Sign Up</button>
                     </div>
                 </div>
